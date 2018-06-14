@@ -4,13 +4,9 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-class CsvPage():
-    def __init__(self, browser):
-        self.browser = browser
-
-    def testrange(self):
+def testrange():
         with open('C:/Users/Anitha/Desktop/sample.csv') as csvfile:
-            readcsv = csv.reader(csvfile, delimiter=',')
+            readCSV = csv.reader(csvfile, delimiter=',')
             email = []
             mobile = []
             password = []
@@ -18,7 +14,7 @@ class CsvPage():
             lastname = []
             zipcode = []
             ssn = []
-            for row in readcsv:
+            for row in readCSV:
                 emailVar = row[0]
                 mobileVar = row[1]
                 passwordVar = row[2]

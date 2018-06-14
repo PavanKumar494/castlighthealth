@@ -5,10 +5,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 from lib.util.common import create_driver
 import unittest
-import time
 import csv
-
-
+from lib.util.common.csvcompiler import testrange
 
 # Create python Test class and inherit unittest module#
 
@@ -21,28 +19,23 @@ class TestRegisterC83844(unittest.TestCase):
         # initialize page object class#
         self.login_page = LoginPage(self.browser)
         self.registration_page = RegistrationPage(self.browser)
-        f = with open('C:/Users/Anitha/Desktop/sample.csv') as csvfile:
-
-
+        self.a = testrange()
 
     def test_caseC83844(self):
-
-
-
-           # wait for page load#
+        # wait for page load#
         self.login_page.wait_for_page_load()
         # click on register button on the top right hand corner of page#
         self.login_page.get_register_button().click()
         # wait for registration page load#
         self.registration_page.wait_for_registration_page_to_load()
         # enter valid email address#
-        self.registration_page.get_email_textbox().send_keys(x)
+        self.registration_page.get_email_textbox().send_keys(self.a[0][0])
         # enter mobile phone number#
-        self.registration_page.get_phone_textbox().send_keys('9972118191')
+        self.registration_page.get_phone_textbox().send_keys(self.a[1][0])
         # enter valid credentials#
-        self.registration_page.get_password_textbox().send_keys('igs12345A!')
-        self.registration_page.get_firstname_textbox().send_keys('pavan')
-        self.registration_page.get_last_name_textbox().send_keys('kumar')
+        self.registration_page.get_password_textbox().send_keys(self.a[2][0])
+        self.registration_page.get_firstname_textbox().send_keys(self.a[3][0])
+        self.registration_page.get_last_name_textbox().send_keys(self.a[4][0])
         ddl_day = self.registration_page.get_day_ddl()
         # Creating an object for Select class functionality and passing identified element for date#
         sct_day = Select(ddl_day)
@@ -57,18 +50,17 @@ class TestRegisterC83844(unittest.TestCase):
         # Creating an object for Select class functionality and passing identified element for year#
         sct_year = Select(ddl_year)
         # Selecting year by visible text#
-        sct_year.select_by_visible_text('1988')
+        sct_year.select_by_visible_text('1985')
         # Enter zip code#
-        self.registration_page.get_zip_textbox().send_keys('560037')
+        self.registration_page.get_zip_textbox().send_keys(self.a[5][0])
         # Enter 6 digit SSN #
-        self.registration_page.get_ssn_textbox().send_keys('521345')
+        self.registration_page.get_ssn_textbox().send_keys(self.a[6][0])
         # Check the checkbox#
         self.registration_page.get_checkbox_button().click()
         # Click/Push register button #
         self.registration_page.get_register_button().click()
-        time.sleep(10)
-    # Post Test execution#
 
     def tearDown(self):
         print('Successful Test Execution')
         self.browser.close()
+
