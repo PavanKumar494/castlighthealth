@@ -1,10 +1,10 @@
-from selenium.webdriver import Firefox, Chrome, Ie
 from lib.ui.login.login_page import LoginPage
 from lib.ui.login.registration_page import RegistrationPage
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 from lib.util.common import create_driver
 import unittest
+
 import csv
 from lib.util.common.csvcompiler import testrange
 
@@ -16,7 +16,7 @@ class TestRegisterC83844(unittest.TestCase):
     def setUp(self):
         # initialize the browser instance#
         self.browser = create_driver.get_browser_instance()
-        # initialize page object class#
+        # initial ize page object class#
         self.login_page = LoginPage(self.browser)
         self.registration_page = RegistrationPage(self.browser)
         self.a = testrange()
